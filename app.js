@@ -6,8 +6,6 @@ const path = require("path");
 const fs = require("fs");
 const render = require("./lib/htmlRenderer");
 
-// Output team.html into output folder within directory - Fails if output folder is not created first
-const output = path.join(__dirname + "/output/" , "team.html");
 // Empty array to contain response from inquirer
 const team = [];
 
@@ -68,7 +66,7 @@ const newTeamMember = () => {
         } else if (response.role === "Intern") {
             addIntern();
         } else {
-            fs.writeFile(output, render(team), (err) => {
+            fs.writeFile((path.join(__dirname + "/output/" , "team.html")), render(team), (err) => {
                 if (err) throw err;
                 console.log('The file has been saved!');
             });
